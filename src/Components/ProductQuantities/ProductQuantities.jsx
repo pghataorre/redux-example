@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 
-const ProductQuantities = ({propNumberOfCakes, propNumberOfIcreams}) => {
+const ProductQuantities = ({propNumberOfCakes, propNumberOfIceCreams}) => {
   return (
     <div className='divider'>
       <p>Gets the data from the store using the connect() Redux Pattern</p>
       <p> Number of Cakes: <span className='items-count'>{propNumberOfCakes}</span></p>
-      <p> Number of Ice creams: <span className='items-count'>{propNumberOfIcreams}</span></p>
+      <p> Number of Ice creams: <span className='items-count'>{propNumberOfIceCreams}</span></p>
 
 
     </div>
@@ -15,7 +15,7 @@ const ProductQuantities = ({propNumberOfCakes, propNumberOfIcreams}) => {
 const mapStateToProps = (state) => {
   return {
     propNumberOfCakes: state.numberOfCakes,
-    propNumberOfIcreams: state.numberOfIceCreams
+    propNumberOfIceCreams: state.numberOfIceCreams
   }
 }
 

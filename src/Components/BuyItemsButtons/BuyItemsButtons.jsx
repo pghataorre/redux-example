@@ -26,5 +26,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-// GOTCHA --- YOU DONT HAVE TO SEND mapStateToProps, but MUST send in null as the first Param to connect()
+// GOTCHA --- YOU DON'T HAVE TO SEND mapStateToProps, but MUST send in null as the first Param to connect()
 export default connect(null, mapDispatchToProps)(BuyItemsButtons);

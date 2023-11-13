@@ -6,13 +6,13 @@ import BuyItemsButtonsUseSelector from './Components/BuyItemsButtonsUseSelector/
 import ProductQuantities from './Components/ProductQuantities/ProductQuantities';
 import ProductQuantitiesUseSelector from './Components/ProductQuantitiesUseSelector/ProductQuantitiesUseSelector';
 import RestockItemsButtons from './Components/RestockItemsButtons/RestockItemsButtons';
+import RestockFromInput from './Components/RestockFromInput/RestockFromInput';
+import GetUsers from './Components/GetUsers/GetAUsers';
 import logger from 'redux-logger';
-import ReduxThunk from 'redux-thunk';
+//import ReduxThunk from 'redux-thunk';
 import './App.css';
 
-
-
-const store = createStore(reducer, applyMiddleware([ReduxThunk, logger]));
+const store = createStore(reducer, applyMiddleware(logger));
 store.subscribe(() => console.log('updated State =', store.getState()));
 
 function App() {
@@ -26,6 +26,8 @@ function App() {
           <BuyItemsButtonsUseSelector />  
           <ProductQuantitiesUseSelector />
           <RestockItemsButtons />
+          <RestockFromInput />
+          <GetUsers />
         </main>
       </div>
     </Provider>   
