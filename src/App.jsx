@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import reducer from './reducer/reducer';
 import { Provider } from 'react-redux';
 import BuyItemsButtons from './Components/BuyItemsButtons/BuyItemsButtons';
@@ -8,11 +9,11 @@ import ProductQuantitiesUseSelector from './Components/ProductQuantitiesUseSelec
 import RestockItemsButtons from './Components/RestockItemsButtons/RestockItemsButtons';
 import RestockFromInput from './Components/RestockFromInput/RestockFromInput';
 import GetUsers from './Components/GetUsers/GetAUsers';
+import GetAUsersUsingThunk from './Components/GetAUsersUsingThunk/GetAUsersUsingThunk';
 import logger from 'redux-logger';
-//import ReduxThunk from 'redux-thunk';
 import './App.css';
 
-const store = createStore(reducer, applyMiddleware(logger));
+const store = createStore(reducer, applyMiddleware(logger, thunk));
 store.subscribe(() => console.log('updated State =', store.getState()));
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <RestockItemsButtons />
           <RestockFromInput />
           <GetUsers />
+          <GetAUsersUsingThunk />
         </main>
       </div>
     </Provider>   

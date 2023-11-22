@@ -8,7 +8,9 @@ import {
   FETCH_API_SUCCESS,
   FETCH_API_FAIL,
   FETCH_API_LOADING
-} from "../actionTypes/actionTypes"
+} from "../actionTypes/actionTypes";
+
+import { getApi } from "../api/api";
 
 export const buyCake = (SOME_PAY_LOAD) => {
   return {
@@ -66,5 +68,23 @@ export const fetchUserFail = (hasFailed) => {
 export const setLoading = () => {
   return {
     type: FETCH_API_LOADING,
+  }
+}
+
+export const fetchUserUsingThunk = () => {
+  return async (dispatch) => {
+    dispatch(setLoading());
+    dispatch(fetchUserFail(false)); 
+
+    try {
+      const users = await getApi();
+      dispatch(fetchUserSuccess(users));
+      dispatch(setLoading());
+
+    } catch (error) {
+      dispatch(setLoading());
+      dispatch(fetchUserFail(true));
+      console.log('error in fetch action creator === ',  error);
+    }
   }
 }

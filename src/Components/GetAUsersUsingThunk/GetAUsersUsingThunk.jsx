@@ -1,8 +1,7 @@
-import { fetchUserSuccess, fetchUserFail, setLoading } from "../../actionCreators/actionCreators";
+import { fetchUserUsingThunk } from "../../actionCreators/actionCreators";
 import { useDispatch, useSelector } from "react-redux";
-import { getApi } from '../../api/api';
 
-const GetUsers = () => {
+const GetAUsersUsingThunk = () => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector((state) => state.loading);
@@ -10,25 +9,13 @@ const GetUsers = () => {
   const hasFailed = useSelector((state) => state.apiFail);
 
   const getUsersApi = async () => {
-      dispatch(setLoading());
-      dispatch(fetchUserFail(false)); 
-
-      try {
-        const users = await getApi();
-        dispatch(fetchUserSuccess(users));
-        dispatch(setLoading());
-
-      } catch(err) {
-        console.error('err =====', err);
-        dispatch(setLoading());
-        dispatch(fetchUserFail(true));
-      } 
+    dispatch(await fetchUserUsingThunk())
   }
 
   return (
     <div className='divider'>
-      <h3>Fetches an API adds it to the store using - useSelector() and useDispatch()</h3>
-      <button type='button' onClick={getUsersApi}>CALL API TO GET USERS</button>
+      <h3>Fetches an API adds it to the store using - useSelector() and THUNK ACTION CREATOR</h3>
+      <button type='button' onClick={getUsersApi}>CALL API TO GET USERS USING THE THUNK ACTION CREATOR</button>
       <Loader isLoading={isLoading}/>
       <ApiFailed hasFailed={hasFailed} />
       <ul>
@@ -74,4 +61,4 @@ const UsersList = ({users}) => {
   return usersList;
 } 
 
-export default GetUsers;
+export default GetAUsersUsingThunk;
